@@ -51,9 +51,15 @@ async function run() {
         if (req.query?.category) {
             query = { category: req.query.category }
         }
+        if (req.query?.search) {
+          query = { bookTitle: req.query.search }
+      }
         const result = await bookCollections.find(query).toArray();
         res.send(result)
     })
+
+
+   
 
     // update a books method
     app.patch("/book/:id", async (req, res) => {
